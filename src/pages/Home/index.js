@@ -10,6 +10,6 @@ export default class Home extends Component {
       <View>
         <Text>Home</Text>
       </View>
-    );
+    )
   }
 }
