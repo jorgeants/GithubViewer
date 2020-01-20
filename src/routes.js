@@ -7,7 +7,12 @@ import UserDetails from '~/pages/UserDetails';
 const Routes = createAppContainer(
   createStackNavigator(
     {
-      Home,
+      Home: {
+        screen: Home,
+        navigationOptions: {
+          headerShown: false,
+        },
+      },
       UserDetails,
     },
     {
