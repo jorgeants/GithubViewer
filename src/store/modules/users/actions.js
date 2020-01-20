@@ -3,11 +3,17 @@ export const requestSearch = searchTerm => ({
   payload: { searchTerm },
 });
 
-export const searchSuccess = () => ({
+export const searchSuccess = users => ({
   type: '@users/SEARCH_SUCCESS',
+  payload: { users },
 });
 
-export const searchFailure = erroMessage => ({
+export const searchFailure = errorMessage => ({
   type: '@users/SEARCH_FAILURE',
-  payload: { erroMessage },
+  payload: { errorMessage },
+});
+
+export const selectUser = username => ({
+  type: '@users/SELECT_USER',
+  payload: { username },
 });

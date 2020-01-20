@@ -1,6 +1,7 @@
+/* eslint-disable global-require */
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { requestSearch } from '~/store/modules/users/actions';
 
@@ -11,6 +12,7 @@ import {
   Container,
   Content,
   Header,
+  ErrorMessageContent,
   FullLogo,
   GithubLogo,
   AppName,
@@ -25,13 +27,16 @@ import {
 export default function Home() {
   const [searchTerm, changeSearchTerm] = useState('');
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.users.loading);
+  const error = useSelector(state => state.users.error);
+  const errorMessage = useSelector(state => state.users.errorMessage);
 
   const handleChangeSearchTerm = term => {
     changeSearchTerm(term);
   };
 
   const handleSearch = () => {
-    dispatch(requestSearch(searchTerm));
+    return searchTerm.length > 0 ? dispatch(requestSearch(searchTerm)) : false;
   };
 
   return (
@@ -57,13 +62,23 @@ export default function Home() {
                   onChangeText={handleChangeSearchTerm}
                 />
                 <SearchButton onPress={handleSearch}>
-                  <SearchButtonText>Buscar</SearchButtonText>
+                  <SearchButtonText>
+                    {loading ? (
+                      <ActivityIndicator size="small" color="#ffffff" />
+                    ) : (
+                      'Buscar'
+                    )}
+                  </SearchButtonText>
                 </SearchButton>
               </SearchWrapper>
             </SearchContainer>
           </Header>
 
-          <UserList />
+          {error ? (
+            <ErrorMessageContent>{errorMessage}</ErrorMessageContent>
+          ) : (
+            <UserList />
+          )}
         </Content>
 
         <Footer />

@@ -1,9 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { View } from 'react-native';
+import UserItem from '~/components/UserItem';
 
-// import { Container } from './styles';
+import { List } from './styles';
 
-const UserList = () => <View />;
+const UserList = () => {
+  const data = useSelector(state => state.users.list);
+
+  return (
+    <List
+      data={data}
+      renderItem={({ item }) => <UserItem item={item} />}
+      keyExtractor={item => item.id.toString()}
+    />
+  );
+};
 
 export default UserList;

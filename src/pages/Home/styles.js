@@ -1,15 +1,24 @@
 import styled from 'styled-components/native';
+import { theme } from '~/theme/globalStyle';
 
 export const Container = styled.View`
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0px 15px 0px 15px;
   height: 100%;
 `;
 export const Content = styled.View`
   flex-direction: column;
+  flex: 1;
 `;
 export const Header = styled.View`
   flex-direction: column;
+  padding-bottom: 20px;
+`;
+export const ErrorMessageContent = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  color: ${theme.error};
+  padding: 10px 40px;
 `;
 
 export const FullLogo = styled.View`
@@ -47,6 +56,8 @@ export const SearchInput = styled.TextInput`
 `;
 export const SearchButton = styled.TouchableOpacity`
   width: 90px;
+  align-items: center;
+  justify-content: center;
   background-color: #000;
   border: 1px solid #000;
   padding: 10px 6px;
@@ -54,6 +65,5 @@ export const SearchButton = styled.TouchableOpacity`
 `;
 export const SearchButtonText = styled.Text`
   color: #fff;
-  text-align: center;
   font-size: 16px;
 `;
