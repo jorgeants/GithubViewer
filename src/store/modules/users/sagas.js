@@ -51,7 +51,8 @@ function* requestNextPage() {
   try {
     const currentNextPage = yield select(state => state.users.nextPageURL);
 
-    api.baseURL = null;
+    // api.baseURL = null;
+    api.setBaseURL(null);
     const response = yield call(api.get, currentNextPage);
 
     const nextPageURL = yield getNextPageURL(response.headers.link);

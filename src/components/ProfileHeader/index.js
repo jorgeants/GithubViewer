@@ -28,13 +28,13 @@ const ProfileHeader = ({ user }) => {
         {user.bio && <ProfileBio>{user.bio}</ProfileBio>}
         {user.location && (
           <ProfileInfo>
-            <Icon name="location" size={22} color="#000" />
+            <Icon name="location" size={20} color="#000" />
             <ProfileInfoText>{user.location}</ProfileInfoText>
           </ProfileInfo>
         )}
         {user.blog && (
           <ProfileInfo>
-            <Icon name="link" size={22} color="#000" />
+            <Icon name="link" size={20} color="#000" />
             <ProfileInfoText>{user.blog}</ProfileInfoText>
           </ProfileInfo>
         )}

@@ -1,14 +1,29 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import api from '~/services/api';
 
-function* requestSearchUsers(action) {
-  try {
-    const { searchTerm } = action.payload;
+import {
+  repositoriesLoadSuccess,
+  repositoriesLoadFailure,
+} from '~/store/modules/repositories/actions';
 
-    const response = yield call(api.get, `search/users?q=${searchTerm}`);
-  } catch (error) {}
+function* loadRepositories(action) {
+  try {
+    const { username } = action.payload;
+
+    const response = yield call(api.get, `/users/${username}/repos`);
+
+    console.tron.log(response.data);
+
+    yield put(repositoriesLoadSuccess(response.data));
+  } catch (error) {
+    yield put(
+      repositoriesLoadFailure(
+        'Ops! Ocorreu algum erro ao tentar selecionar o usuário.'
+      )
+    );
+  }
 }
 
 export default all([
-  takeLatest('@users/REQUEST_REPOSITORIES', requestSearchUsers),
+  takeLatest('@repositories/REQUEST_REPOSITORIES_LOAD', loadRepositories),
 ]);

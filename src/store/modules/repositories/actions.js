@@ -1,13 +1,14 @@
 export const requestRepositoriesLoad = username => ({
-  type: '@users/REQUEST_REPOSITORIES_LOAD',
+  type: '@repositories/REQUEST_REPOSITORIES_LOAD',
   payload: { username },
 });
 
-export const repositoriesLoadSuccess = () => ({
-  type: '@users/REPOSITORIES_LOAD_SUCCESS',
+export const repositoriesLoadSuccess = repositories => ({
+  type: '@repositories/REPOSITORIES_LOAD_SUCCESS',
+  payload: { repositories },
 });
 
 export const repositoriesLoadFailure = erroMessage => ({
-  type: '@users/REPOSITORIES_LOAD_FAILURE',
+  type: '@repositories/REPOSITORIES_LOAD_FAILURE',
   payload: { erroMessage },
 });

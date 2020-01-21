@@ -3,8 +3,10 @@ import { StatusBar, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getUserDetails } from '~/store/modules/users/actions';
+import { requestRepositoriesLoad } from '~/store/modules/repositories/actions';
 
 import ProfileHeader from '~/components/ProfileHeader';
+import RepositoryContainer from '~/components/RepositoryContainer';
 import Footer from '~/components/Footer';
 
 import { Container, Content } from './styles';
@@ -17,16 +19,20 @@ export default function UserDetails({ navigation }) {
 
   useEffect(() => {
     dispatch(getUserDetails(username));
+    dispatch(requestRepositoriesLoad(username));
   }, [username]);
 
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
       <Container>
-        <Content>{user && <ProfileHeader user={user} />}</Content>
-      </Container>
+        <Content>
+          {user && <ProfileHeader user={user} />}
+          <RepositoryContainer />
+        </Content>
 
-      <Footer />
+        <Footer />
+      </Container>
     </SafeAreaView>
   );
 }
