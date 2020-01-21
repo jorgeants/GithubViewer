@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   list: [],
   lastSearchedUsers: [],
   nextPageURL: '',
+  userDetails: null,
 };
 
 export default function users(state = INITIAL_STATE, action) {
@@ -50,6 +51,28 @@ export default function users(state = INITIAL_STATE, action) {
         errorMessage: '',
         list: state.list.concat(action.payload.users),
         nextPageURL: action.payload.nextPageURL,
+      };
+    case '@users/GET_USER_DETAILS':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        errorMessage: '',
+      };
+    case '@users/USER_DETAILS_SUCCESS':
+      return {
+        ...state,
+        userDetails: action.payload.data,
+        loading: false,
+        error: false,
+        errorMessage: '',
+      };
+    case '@users/USER_DETAILS_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: action.payload.errorMessage,
       };
     default:
       return state;

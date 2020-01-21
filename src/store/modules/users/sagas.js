@@ -4,6 +4,8 @@ import {
   searchSuccess,
   searchFailure,
   loadNextPageSuccess,
+  userDetailsSuccess,
+  userDetailsFailure,
 } from '~/store/modules/users/actions';
 
 function getNextPageURL(headerLink) {
@@ -11,7 +13,6 @@ function getNextPageURL(headerLink) {
     headerLink && headerLink.length > 0 && headerLink.split(',');
 
   let pagesObject = [];
-
   if (paginationMetaData) {
     paginationMetaData.forEach(pageData => {
       const page = pageData.split(';');
@@ -22,14 +23,10 @@ function getNextPageURL(headerLink) {
     });
   }
 
-  // console.tron.log('pagesObject', pagesObject);
-
   const nextPage =
     pagesObject && pagesObject.next
       ? pagesObject.next.substring(1, pagesObject.next.length - 1)
       : null;
-
-  // console.tron.log('nextPage', nextPage);
 
   return nextPage;
 }
@@ -38,7 +35,7 @@ function* requestSearchUsers(action) {
   try {
     const { searchTerm } = action.payload;
 
-    const response = yield call(api.get, `search/users?q=${searchTerm}`);
+    const response = yield call(api.get, `/search/users?q=${searchTerm}`);
 
     const nextPageURL = yield getNextPageURL(response.headers.link);
 
@@ -68,7 +65,24 @@ function* requestNextPage() {
   }
 }
 
+function* requestGetUser(action) {
+  try {
+    const { username } = action.payload;
+
+    const response = yield call(api.get, `/users/${username}`);
+
+    yield put(userDetailsSuccess(response.data));
+  } catch (error) {
+    yield put(
+      userDetailsFailure(
+        'Ops! Ocorreu algum erro ao tentar selecionar o usuário.'
+      )
+    );
+  }
+}
+
 export default all([
   takeLatest('@users/REQUEST_SEARCH', requestSearchUsers),
   takeLatest('@users/REQUEST_NEXT_PAGE', requestNextPage),
+  takeLatest('@users/GET_USER_DETAILS', requestGetUser),
 ]);

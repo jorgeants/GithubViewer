@@ -8,7 +8,7 @@ import UserItem from '~/components/UserItem';
 
 import { List } from './styles';
 
-const UserList = () => {
+const UserList = ({ navigation }) => {
   const data = useSelector(state => state.users.list);
   const loading = useSelector(state => state.users.loading);
   const error = useSelector(state => state.users.error);
@@ -28,7 +28,9 @@ const UserList = () => {
   return (
     <List
       data={data}
-      renderItem={({ item }) => <UserItem item={item} />}
+      renderItem={({ item }) => (
+        <UserItem navigation={navigation} item={item} />
+      )}
       keyExtractor={item => item.id.toString()}
       onEndReached={loadUsers}
       onEndReachedThreshold={0}

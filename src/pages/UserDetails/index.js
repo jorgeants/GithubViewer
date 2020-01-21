@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { StatusBar, SafeAreaView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { View, Text } from 'react-native';
+import { getUserDetails } from '~/store/modules/users/actions';
 
-// import { Container } from './styles';
+import ProfileHeader from '~/components/ProfileHeader';
+import Footer from '~/components/Footer';
 
-export default function UserDetails() {
+import { Container, Content } from './styles';
+
+export default function UserDetails({ navigation }) {
+  const [username] = useState(navigation.getParam('username'));
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.users.userDetails);
+
+  useEffect(() => {
+    dispatch(getUserDetails(username));
+  }, [username]);
+
   return (
-    <View>
-      <Text>User Details</Text>
-    </View>
+    <SafeAreaView>
+      <StatusBar barStyle="light-content" />
+      <Container>
+        <Content>{user && <ProfileHeader user={user} />}</Content>
+      </Container>
+
+      <Footer />
+    </SafeAreaView>
   );
 }
+
+UserDetails.navigationOptions = {
+  title: 'Usuário',
+};

@@ -22,7 +22,17 @@ export const loadNextPageSuccess = (users, nextPageURL) => ({
   payload: { users, nextPageURL },
 });
 
-export const selectUser = username => ({
-  type: '@users/SELECT_USER',
+export const getUserDetails = username => ({
+  type: '@users/GET_USER_DETAILS',
   payload: { username },
+});
+
+export const userDetailsSuccess = data => ({
+  type: '@users/USER_DETAILS_SUCCESS',
+  payload: { data },
+});
+
+export const userDetailsFailure = errorMessage => ({
+  type: '@users/USER_DETAILS_FAILURE',
+  payload: { errorMessage },
 });

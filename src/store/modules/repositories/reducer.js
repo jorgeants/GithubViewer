@@ -1,6 +1,10 @@
 const INITIAL_STATE = {
+  username: '',
+  loading: false,
+  error: false,
+  errorMessage: '',
   list: [],
-  lastLastRepositories: [],
+  lastRepositories: [],
 };
 
 export default function repositories(state = INITIAL_STATE, action) {

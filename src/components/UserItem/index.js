@@ -1,4 +1,5 @@
 import React from 'react';
+import { StackActions } from 'react-navigation';
 
 import {
   Item,
@@ -8,13 +9,17 @@ import {
   DetailsProfileUrl,
 } from './styles';
 
-const UserItem = ({ item }) => {
+const UserItem = ({ item, navigation }) => {
+  const handleGoToUserDetails = () => {
+    navigation.navigate('UserDetails', { username: item.login });
+  };
+
   return (
-    <Item>
+    <Item onPress={handleGoToUserDetails}>
       <Avatar source={{ uri: item.avatar_url }} resizeMode="contain" />
       <Details>
         <DetailsUserName>{item.login}</DetailsUserName>
-        <DetailsProfileUrl>{item.url}</DetailsProfileUrl>
+        <DetailsProfileUrl>{item.html_url}</DetailsProfileUrl>
       </Details>
     </Item>
   );

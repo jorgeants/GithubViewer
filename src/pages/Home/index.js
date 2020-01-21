@@ -24,7 +24,7 @@ import {
   SearchButtonText,
 } from './styles';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [searchTerm, changeSearchTerm] = useState('');
   const dispatch = useDispatch();
   const loading = useSelector(state => state.users.loading);
@@ -77,7 +77,7 @@ export default function Home() {
           {error ? (
             <ErrorMessageContent>{errorMessage}</ErrorMessageContent>
           ) : (
-            <UserList />
+            <UserList navigation={navigation} />
           )}
         </Content>
 
