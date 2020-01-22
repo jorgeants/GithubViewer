@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import {
@@ -43,6 +44,26 @@ const ProfileHeader = ({ user }) => {
       ) : null}
     </Header>
   );
+};
+
+ProfileHeader.propTypes = {
+  user: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    login: PropTypes.string.isRequired,
+    bio: PropTypes.string,
+    location: PropTypes.string,
+    blog: PropTypes.string,
+  }),
+};
+
+ProfileHeader.defaultProps = {
+  user: PropTypes.shape({
+    name: null,
+    bio: null,
+    location: null,
+    blog: null,
+  }),
 };
 
 export default ProfileHeader;

@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -87,3 +88,7 @@ export default function Home({ navigation }) {
     </SafeAreaView>
   );
 }
+
+Home.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};

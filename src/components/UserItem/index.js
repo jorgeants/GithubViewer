@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Item,
@@ -22,6 +23,17 @@ const UserItem = ({ item, navigation }) => {
       </Details>
     </Item>
   );
+};
+
+UserItem.propTypes = {
+  item: PropTypes.shape({
+    login: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+    html_url: PropTypes.string.isRequired,
+  }).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default UserItem;

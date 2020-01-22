@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -40,6 +41,10 @@ const UserList = ({ navigation }) => {
       ListFooterComponent={renderLoadingFooter}
     />
   );
+};
+
+UserList.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
 };
 
 export default UserList;

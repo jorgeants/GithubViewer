@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator, StatusBar, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -32,22 +33,29 @@ export default function UserDetails({ navigation }) {
     dispatch(requestRepositoriesLoad(username));
   }, [username]);
 
+  const renderContent = () => {
+    return !loading ? (
+      <>
+        {user && <ProfileHeader user={user} />}
+        <RepositoryList />
+      </>
+    ) : (
+      <ActivityIndicatorContent>
+        <ActivityIndicator size="large" color={theme.primary} />
+      </ActivityIndicatorContent>
+    );
+  };
+
   return (
     <SafeAreaView>
       <StatusBar barStyle="light-content" />
       <Container>
         <Content>
-          {!loading && !error ? (
-            <>
-              {user && <ProfileHeader user={user} />}
-              <RepositoryList />
-            </>
+          {error ? (
+            <ErrorMessageContent>{errorMessage}</ErrorMessageContent>
           ) : (
-            <ActivityIndicatorContent>
-              <ActivityIndicator size="large" color={theme.primary} />
-            </ActivityIndicatorContent>
+            renderContent()
           )}
-          {error && <ErrorMessageContent>{errorMessage}</ErrorMessageContent>}
         </Content>
         <Footer />
       </Container>
@@ -57,4 +65,10 @@ export default function UserDetails({ navigation }) {
 
 UserDetails.navigationOptions = {
   title: 'Usuário',
+};
+
+UserDetails.propTypes = {
+  navigation: PropTypes.shape({
+    getParam: PropTypes.func.isRequired,
+  }).isRequired,
 };

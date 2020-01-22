@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import convertKiloBytes from '~/helpers/convertKiloBytes';
 
@@ -30,6 +31,16 @@ const RepositoryItem = ({ item }) => {
       </Details>
     </Item>
   );
+};
+
+RepositoryItem.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    size: PropTypes.number,
+    language: PropTypes.string,
+    open_issues_count: PropTypes.number,
+  }).isRequired,
 };
 
 export default RepositoryItem;
