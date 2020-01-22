@@ -2,8 +2,6 @@
 
 GitHubViewer is a mobile app built with JavaScript technologies based in [React Native](https://facebook.github.io/react-native/). It is amazing app for search and view details and repositoris of the GitHub users. It used the GitHub public api for consults.
 
-<hr>
-
 ## Flux Architeture
 
 For administrate and share the main state to all application, we use the [Redux](https://redux.js.org/) library.
@@ -17,8 +15,6 @@ But, the Redux follow the three principles:
 - Changes are made with pure functions
 
 For more information access: [Three Principles of the Redux](https://redux.js.org/introduction/three-principles)
-
-<hr>
 
 ## Prerequisites to run and coding on your environment
 
@@ -45,7 +41,7 @@ cd ios && pod install
 
 #### iOS
 
-With Xcode installed, configured and fulfilling the above prerequisites. Execute:
+With Xcode installed, configured and fulfilling the above prerequisites, execute:
 ```
 npx react-native run-ios
 ```
@@ -58,9 +54,8 @@ npx react-native run-android
 ```
 
 ## For Coding
-Some Text Editor, with ESLint, Prettier and editorConfig installed and configured. I recommend the Visual Studio Code (VDCode).
 
-<hr>
+Some Text Editor, with ESLint, Prettier and editorConfig installed and configured. I recommend the Visual Studio Code (VSCode).
 
 ### Debug
 
