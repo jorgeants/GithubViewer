@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   errorMessage: '',
   list: [],
   lastSearchedUsers: [],
-  nextPageURL: '',
+  nextPageURL: null,
   userDetails: null,
 };
 

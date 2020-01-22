@@ -6,7 +6,10 @@ import {
   repositoriesLoadFailure,
   repositoriesMountResume,
   repositoriesUpdateResume,
+  loadNextPageSuccess,
 } from '~/store/modules/repositories/actions';
+
+import getNextPageURL from '~/helpers/getNextPageURL';
 
 import convertKiloBytes from '~/helpers/convertKiloBytes';
 import countItensRepeatedArray from '~/helpers/countItemsRepeatedArray';
@@ -41,8 +44,10 @@ function* loadRepositories(action) {
 
     const response = yield call(api.get, `/users/${username}/repos`);
 
-    yield put(repositoriesLoadSuccess(response.data));
-    yield put(repositoriesMountResume(response.data));
+    const nextPageURL = yield getNextPageURL(response.headers.link);
+
+    yield put(repositoriesLoadSuccess(response.data, nextPageURL));
+    yield put(repositoriesMountResume());
   } catch (error) {
     yield put(
       repositoriesLoadFailure(
@@ -52,7 +57,30 @@ function* loadRepositories(action) {
   }
 }
 
+function* requestNextPage() {
+  try {
+    const currentNextPage = yield select(
+      state => state.repositories.nextPageURL
+    );
+
+    api.baseURL = null;
+    const response = yield call(api.get, currentNextPage);
+
+    const nextPageURL = yield getNextPageURL(response.headers.link);
+
+    yield put(loadNextPageSuccess(response.data, nextPageURL));
+    yield put(repositoriesMountResume());
+  } catch (error) {
+    yield put(
+      repositoriesLoadFailure(
+        'Ops! Ocorreu algum erro. Tente novamente mais tarde.'
+      )
+    );
+  }
+}
+
 export default all([
   takeLatest('@repositories/REQUEST_REPOSITORIES_LOAD', loadRepositories),
   takeLatest('@repositories/REPOSITORIES_MOUNT_RESUME', mountResume),
+  takeLatest('@repositories/REQUEST_NEXT_PAGE', requestNextPage),
 ]);

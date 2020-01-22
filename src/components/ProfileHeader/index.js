@@ -24,21 +24,23 @@ const ProfileHeader = ({ user }) => {
           <ProfileUserName>@{user.login}</ProfileUserName>
         </ProfileDetails>
       </ProfileFirstInfo>
-      <ProfileMoreInfo>
-        {user.bio && <ProfileBio>{user.bio}</ProfileBio>}
-        {user.location && (
-          <ProfileInfo>
-            <Icon name="location" size={18} color="#000" />
-            <ProfileInfoText>{user.location}</ProfileInfoText>
-          </ProfileInfo>
-        )}
-        {user.blog && (
-          <ProfileInfo>
-            <Icon name="link" size={18} color="#000" />
-            <ProfileInfoText>{user.blog}</ProfileInfoText>
-          </ProfileInfo>
-        )}
-      </ProfileMoreInfo>
+      {user.bio || user.location || user.blog ? (
+        <ProfileMoreInfo>
+          {user.bio ? <ProfileBio>{user.bio}</ProfileBio> : null}
+          {user.location ? (
+            <ProfileInfo>
+              <Icon name="location" size={18} color="#000" />
+              <ProfileInfoText>{user.location}</ProfileInfoText>
+            </ProfileInfo>
+          ) : null}
+          {user.blog ? (
+            <ProfileInfo>
+              <Icon name="link" size={18} color="#000" />
+              <ProfileInfoText>{user.blog}</ProfileInfoText>
+            </ProfileInfo>
+          ) : null}
+        </ProfileMoreInfo>
+      ) : null}
     </Header>
   );
 };

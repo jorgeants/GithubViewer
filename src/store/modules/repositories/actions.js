@@ -3,9 +3,9 @@ export const requestRepositoriesLoad = username => ({
   payload: { username },
 });
 
-export const repositoriesLoadSuccess = repositories => ({
+export const repositoriesLoadSuccess = (repositories, nextPageURL) => ({
   type: '@repositories/REPOSITORIES_LOAD_SUCCESS',
-  payload: { repositories },
+  payload: { repositories, nextPageURL },
 });
 
 export const repositoriesLoadFailure = erroMessage => ({
@@ -20,4 +20,13 @@ export const repositoriesMountResume = () => ({
 export const repositoriesUpdateResume = resume => ({
   type: '@repositories/REPOSITORIES_UPDATE_RESUME',
   payload: { resume },
+});
+
+export const requestNextPage = () => ({
+  type: '@repositories/REQUEST_NEXT_PAGE',
+});
+
+export const loadNextPageSuccess = (repositories, nextPageURL) => ({
+  type: '@repositories/LOAD_NEXT_PAGE_SUCCESS',
+  payload: { repositories, nextPageURL },
 });
