@@ -20,7 +20,6 @@ export const ErrorMessageContent = styled.Text`
   color: ${theme.error};
   padding: 10px 40px;
 `;
-
 export const FullLogo = styled.View`
   flex-direction: row;
   justify-content: center;
@@ -35,7 +34,6 @@ export const AppName = styled.Text`
   font-size: 40px;
   font-weight: 200;
 `;
-
 export const SearchContainer = styled.View`
   flex-direction: column;
   width: 100%;
@@ -48,7 +46,7 @@ export const SearchLabel = styled.Text`
 `;
 export const SearchInput = styled.TextInput`
   flex: 1;
-  border: 1px solid #000;
+  border: 1px solid ${theme.primary};
   padding: 10px 4px;
   border-radius: 5px;
   margin-right: 6px;
@@ -58,12 +56,12 @@ export const SearchButton = styled.TouchableOpacity`
   width: 90px;
   align-items: center;
   justify-content: center;
-  background-color: #000;
-  border: 1px solid #000;
+  background-color: ${theme.primary};
+  border: 1px solid ${theme.primary};
   padding: 10px 6px;
   border-radius: 5px;
 `;
 export const SearchButtonText = styled.Text`
-  color: #fff;
+  color: ${theme.light};
   font-size: 16px;
 `;

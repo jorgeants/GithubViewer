@@ -1,5 +1,6 @@
 import { all, takeLatest, call, put, select } from 'redux-saga/effects';
 import api from '~/services/api';
+
 import {
   searchSuccess,
   searchFailure,
@@ -7,6 +8,7 @@ import {
   userDetailsSuccess,
   userDetailsFailure,
 } from '~/store/modules/users/actions';
+import { clearRepositoriesList } from '~/store/modules/repositories/actions';
 
 import getNextPageURL from '~/helpers/getNextPageURL';
 
@@ -45,6 +47,8 @@ function* requestNextPage() {
 
 function* requestGetUser(action) {
   try {
+    yield put(clearRepositoriesList());
+
     const { username } = action.payload;
 
     const response = yield call(api.get, `/users/${username}`);

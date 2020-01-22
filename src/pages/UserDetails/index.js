@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, SafeAreaView } from 'react-native';
+import { ActivityIndicator, StatusBar, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getUserDetails } from '~/store/modules/users/actions';
@@ -9,13 +9,23 @@ import ProfileHeader from '~/components/ProfileHeader';
 import RepositoryList from '~/components/RepositoryList';
 import Footer from '~/components/Footer';
 
-import { Container, Content, RepositoryContainer } from './styles';
+import { theme } from '~/theme/globalStyle';
+import {
+  Container,
+  Content,
+  ErrorMessageContent,
+  ActivityIndicatorContent,
+} from './styles';
 
 export default function UserDetails({ navigation }) {
   const [username] = useState(navigation.getParam('username'));
-  const dispatch = useDispatch();
 
   const user = useSelector(state => state.users.userDetails);
+  const loading = useSelector(state => state.users.loading);
+  const error = useSelector(state => state.users.error);
+  const errorMessage = useSelector(state => state.users.errorMessage);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserDetails(username));
@@ -27,10 +37,17 @@ export default function UserDetails({ navigation }) {
       <StatusBar barStyle="light-content" />
       <Container>
         <Content>
-          {user && <ProfileHeader user={user} />}
-          <RepositoryContainer>
-            <RepositoryList />
-          </RepositoryContainer>
+          {!loading && !error ? (
+            <>
+              {user && <ProfileHeader user={user} />}
+              <RepositoryList />
+            </>
+          ) : (
+            <ActivityIndicatorContent>
+              <ActivityIndicator size="large" color={theme.primary} />
+            </ActivityIndicatorContent>
+          )}
+          {error && <ErrorMessageContent>{errorMessage}</ErrorMessageContent>}
         </Content>
         <Footer />
       </Container>

@@ -20,5 +20,5 @@ export const DetailsUserName = styled.Text`
 `;
 export const DetailsProfileUrl = styled.Text`
   font-size: 14px;
-  color: ${theme.gray};
+  color: ${theme.darkGray};
 `;

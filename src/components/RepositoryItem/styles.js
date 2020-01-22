@@ -6,7 +6,7 @@ export const Item = styled.View`
   align-items: center;
   padding: 15px 0;
   border-bottom-width: 1px;
-  border-bottom-color: #ccc;
+  border-bottom-color: ${theme.mediumGray};
 `;
 export const Details = styled.View``;
 export const Name = styled.Text`
@@ -16,7 +16,7 @@ export const Name = styled.Text`
 `;
 export const Description = styled.Text`
   font-size: 14px;
-  color: ${theme.gray};
+  color: ${theme.darkGray};
 `;
 export const RepoData = styled.Text`
   padding-top: 6px;

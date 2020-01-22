@@ -8,6 +8,7 @@ import { requestSearch } from '~/store/modules/users/actions';
 import UserList from '~/components/UserList';
 import Footer from '~/components/Footer';
 
+import { theme } from '~/theme/globalStyle';
 import {
   Container,
   Content,
@@ -64,7 +65,7 @@ export default function Home({ navigation }) {
                 <SearchButton onPress={handleSearch}>
                   <SearchButtonText>
                     {loading ? (
-                      <ActivityIndicator size="small" color="#ffffff" />
+                      <ActivityIndicator size="small" color={theme.light} />
                     ) : (
                       'Buscar'
                     )}

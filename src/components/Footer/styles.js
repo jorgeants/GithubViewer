@@ -5,7 +5,6 @@ export const Container = styled.View`
   height: 50px;
   justify-content: center;
 `;
-
 export const CopyrightText = styled.Text`
   text-align: center;
 `;

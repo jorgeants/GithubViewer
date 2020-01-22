@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Home from '~/pages/Home';
 import UserDetails from '~/pages/UserDetails';
+import { theme } from '~/theme/globalStyle';
 
 const Routes = createAppContainer(
   createStackNavigator(
@@ -19,9 +20,9 @@ const Routes = createAppContainer(
       defaultNavigationOptions: {
         headerTitleAlign: 'center',
         headerBackTitleVisible: false,
-        headerTintColor: '#FFF',
+        headerTintColor: theme.light,
         headerStyle: {
-          backgroundColor: '#000',
+          backgroundColor: theme.primary,
         },
         headerLeftContainerStyle: {
           marginLeft: 10,

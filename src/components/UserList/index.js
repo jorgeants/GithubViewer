@@ -6,6 +6,7 @@ import { requestNextPage } from '~/store/modules/users/actions';
 
 import UserItem from '~/components/UserItem';
 
+import { theme } from '~/theme/globalStyle';
 import { List } from './styles';
 
 const UserList = ({ navigation }) => {
@@ -22,7 +23,9 @@ const UserList = ({ navigation }) => {
   };
 
   const renderLoadingFooter = () => {
-    return loading ? <ActivityIndicator size="small" color="#000" /> : null;
+    return loading ? (
+      <ActivityIndicator size="small" color={theme.primary} />
+    ) : null;
   };
 
   return (

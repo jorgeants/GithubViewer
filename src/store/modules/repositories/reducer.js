@@ -61,6 +61,8 @@ export default function repositories(state = INITIAL_STATE, action) {
         list: state.list.concat(action.payload.repositories),
         nextPageURL: action.payload.nextPageURL,
       };
+    case '@repositories/CLEAR_REPOSITORIES_LIST':
+      return INITIAL_STATE;
     default:
       return state;
   }

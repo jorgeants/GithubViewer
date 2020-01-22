@@ -1,3 +1,7 @@
+export const clearRepositoriesList = () => ({
+  type: '@repositories/CLEAR_REPOSITORIES_LIST',
+});
+
 export const requestRepositoriesLoad = username => ({
   type: '@repositories/REQUEST_REPOSITORIES_LOAD',
   payload: { username },
