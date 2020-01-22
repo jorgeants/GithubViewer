@@ -6,10 +6,10 @@ import { getUserDetails } from '~/store/modules/users/actions';
 import { requestRepositoriesLoad } from '~/store/modules/repositories/actions';
 
 import ProfileHeader from '~/components/ProfileHeader';
-import RepositoryContainer from '~/components/RepositoryContainer';
+import RepositoryList from '~/components/RepositoryList';
 import Footer from '~/components/Footer';
 
-import { Container, Content } from './styles';
+import { Container, Content, RepositoryContainer } from './styles';
 
 export default function UserDetails({ navigation }) {
   const [username] = useState(navigation.getParam('username'));
@@ -28,9 +28,10 @@ export default function UserDetails({ navigation }) {
       <Container>
         <Content>
           {user && <ProfileHeader user={user} />}
-          <RepositoryContainer />
+          <RepositoryContainer>
+            <RepositoryList />
+          </RepositoryContainer>
         </Content>
-
         <Footer />
       </Container>
     </SafeAreaView>

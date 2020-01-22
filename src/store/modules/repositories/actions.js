@@ -12,3 +12,12 @@ export const repositoriesLoadFailure = erroMessage => ({
   type: '@repositories/REPOSITORIES_LOAD_FAILURE',
   payload: { erroMessage },
 });
+
+export const repositoriesMountResume = () => ({
+  type: '@repositories/REPOSITORIES_MOUNT_RESUME',
+});
+
+export const repositoriesUpdateResume = resume => ({
+  type: '@repositories/REPOSITORIES_UPDATE_RESUME',
+  payload: { resume },
+});

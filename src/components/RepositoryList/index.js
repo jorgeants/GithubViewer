@@ -1,9 +1,10 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { requestNextPage } from '~/store/modules/users/actions';
 
+import RepositoryResume from '~/components/RepositoryResume';
 import RepositoryItem from '~/components/RepositoryItem';
 
 import { List } from './styles';
@@ -28,6 +29,7 @@ const RepositoryList = () => {
       data={data}
       renderItem={({ item }) => <RepositoryItem item={item} />}
       keyExtractor={item => item.id.toString()}
+      ListHeaderComponent={<RepositoryResume />}
       onEndReached={loadRepositories}
       onEndReachedThreshold={0}
       ListFooterComponent={renderLoadingFooter}

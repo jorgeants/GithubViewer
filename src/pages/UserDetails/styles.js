@@ -9,3 +9,6 @@ export const Content = styled.View`
   flex-direction: column;
   flex: 1;
 `;
+export const RepositoryContainer = styled.View`
+  flex: 1;
+`;

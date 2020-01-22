@@ -4,6 +4,11 @@ const INITIAL_STATE = {
   error: false,
   errorMessage: '',
   list: [],
+  resume: {
+    totalSize: 0,
+    languages: null,
+    totalOpenIssuesCount: 0,
+  },
   lastRepositories: [],
 };
 
@@ -31,6 +36,11 @@ export default function repositories(state = INITIAL_STATE, action) {
         loading: false,
         error: true,
         errorMessage: action.payload.errorMessage,
+      };
+    case '@repositories/REPOSITORIES_UPDATE_RESUME':
+      return {
+        ...state,
+        resume: action.payload.resume,
       };
     default:
       return state;

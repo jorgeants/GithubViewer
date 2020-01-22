@@ -19,8 +19,8 @@ export const ProfileMoreInfo = styled.View`
   border-bottom-color: #ccc;
 `;
 export const Avatar = styled.Image`
-  width: 94px;
-  height: 94px;
+  width: 92px;
+  height: 92px;
   border-radius: 5px;
   margin-right: 15px;
 `;
@@ -28,7 +28,7 @@ export const ProfileDetails = styled.View`
   justify-content: center;
 `;
 export const ProfileName = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
   color: #000;
   font-weight: 800;
   margin-bottom: 5px;
@@ -40,18 +40,18 @@ export const ProfileUserName = styled.Text`
   margin-bottom: 4px;
 `;
 export const ProfileBio = styled.Text`
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 15px;
+  line-height: 20px;
   color: #666;
+  margin-bottom: 8px;
 `;
 export const ProfileInfo = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 2px;
+  padding: 2px 0;
 `;
 export const ProfileInfoText = styled.Text`
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 15px;
   color: #666;
   padding-left: 6px;
 `;

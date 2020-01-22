@@ -51,12 +51,10 @@ function* requestNextPage() {
   try {
     const currentNextPage = yield select(state => state.users.nextPageURL);
 
-    // api.baseURL = null;
-    api.setBaseURL(null);
+    api.baseURL = null;
     const response = yield call(api.get, currentNextPage);
 
     const nextPageURL = yield getNextPageURL(response.headers.link);
-    console.tron.log('nextPageURL', nextPageURL);
 
     yield put(loadNextPageSuccess(response.data.items, nextPageURL));
   } catch (error) {

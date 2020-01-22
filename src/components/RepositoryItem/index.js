@@ -1,10 +1,12 @@
 import React from 'react';
 
+import convertKiloBytes from '~/helpers/convertKiloBytes';
+
 import { Item, Details, Name, Description, RepoData } from './styles';
 
 const RepositoryItem = ({ item }) => {
   const repoSize = size => {
-    return `Tamanho: ${+`${Math.round(`${size / 1024}e+2`)}e-2`} KB | `;
+    return `Tamanho: ${convertKiloBytes(size)} | `;
   };
 
   const repoLanguage = language => {
