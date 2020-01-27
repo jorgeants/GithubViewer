@@ -64,13 +64,11 @@ export default function Home({ navigation }) {
                   onChangeText={handleChangeSearchTerm}
                 />
                 <SearchButton onPress={handleSearch}>
-                  <SearchButtonText>
-                    {loading ? (
-                      <ActivityIndicator size="small" color={theme.light} />
-                    ) : (
-                      'Buscar'
-                    )}
-                  </SearchButtonText>
+                  {loading ? (
+                    <ActivityIndicator size="small" color={theme.light} />
+                  ) : (
+                    <SearchButtonText>Buscar</SearchButtonText>
+                  )}
                 </SearchButton>
               </SearchWrapper>
             </SearchContainer>
